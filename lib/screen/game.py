@@ -89,6 +89,8 @@ class GameScreen(Screen):
         self.main()
 
     def alert(self, team, message, duration=0):
+        self.main() # clear screen
+
         text = self.font.render(message, True, COLOR_WHITE)
         # if team == 2:
         #     text = pygame.transform.rotate(text, 180)

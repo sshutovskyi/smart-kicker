@@ -30,22 +30,22 @@ class Table:
 
     def add_player(self, target, key):
         if len(target.players) >= 2:
-            self.display.game_screen().alert(target.index, 'Team ' + target.name + ' is full')
+            self.display.game_screen().alert(target.index, 'Team ' + target.name + ' is full', 3)
             return
 
         player = self.players_container.get(key)
         if not player:
-            self.display.game_screen().alert(target.index, 'Unknown player')
+            self.display.game_screen().alert(target.index, 'Unknown player', 3)
             return
 
         for side in self.sides:
             if side != target and side.players.count(player) > 0:
-                self.display.game_screen().alert(target.index, 'Already registered')
+                self.display.game_screen().alert(target.index, 'Already registered', 3)
                 return
 
         target.players.append(player)
-        self.display.game_screen().alert(target.index, 'Player ' + player.name + ' joined team ' + target.name)
         self.display.game_screen().add_player(target.index, player.name)
+        self.display.game_screen().alert(target.index, 'Player ' + player.name + ' joined team ' + target.name, 3)
 
         teams_full = True
         for side in self.sides:
